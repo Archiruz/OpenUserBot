@@ -114,6 +114,10 @@
       "description": "Enter Your Client ID for Google Drive.",
       "required": false
     },
+    "GENIUS_API_TOKEN": {
+      "description": "Api Client for Genius Lyric Module [Can be get from - https://genius.com/api-clients]",
+      "required": false
+    },
     "SPOTIFY_USERNAME": {
       "description": "Your Username for Spotify module.",
       "required": false
