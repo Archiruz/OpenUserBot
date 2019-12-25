@@ -122,7 +122,7 @@ async def pipcheck(pip):
 @register(outgoing=True, pattern="^.alive$")
 async def amireallyalive(alive):
     """ For .alive command, check if the bot is running.  """
-    await alive.edit(" ArchiruzBot \n\n"
+    await alive.edit(" ArchiruzBot\n"
                      " ---------------------------------------- \n"
                      " I'm running \n"    
                   f"~ Telethon ver : {version.__version__} \n"
@@ -130,8 +130,8 @@ async def amireallyalive(alive):
                   f"User : {DEFAULTUSER}  \n"
                      " ---------------------------------------- \n\n"
                      "KeselekJembut | 💖 Yuri4Life 💖 \n"
+                     "Thunder best edgy gurl\n"
                      "Have a nice day~ \n")
-
 
 
 @register(outgoing=True, pattern="^.aliveu")
