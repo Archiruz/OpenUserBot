@@ -67,7 +67,7 @@ RUN python3 -m ensurepip \
 #
 # Clone repo and prepare working directory
 #
-RUN git clone -b sql-extended https://github.com/keselekpermen69/OpenUserBot /root/userbot
+RUN git clone -b sql-extended https://github.com/Archiruz/OpenUserBot /root/userbot
 RUN mkdir /root/userbot/bin/
 WORKDIR /root/userbot/
 
