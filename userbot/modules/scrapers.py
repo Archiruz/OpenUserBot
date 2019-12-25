@@ -524,7 +524,7 @@ async def youtube_search(query,
         pageToken=token,
         order=order,
         part="id,snippet",
-        maxResults=10,
+        maxResults=1,
         location=location,
         locationRadius=location_radius).execute()
 
