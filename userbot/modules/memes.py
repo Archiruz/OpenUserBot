@@ -560,6 +560,7 @@ ITEMS = [
     "shovel",
     "pair of trousers",
     "CRT monitor",
+    "used condom",
     "diamond sword",
     "baguette",
     "physics textbook",

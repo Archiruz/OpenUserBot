@@ -128,7 +128,7 @@ async def amireallyalive(alive):
                   f"~ Telethon ver : {version.__version__} \n"
                   f"~ Python ver  : {python_version()} \n"
                   f"User : {DEFAULTUSER}  \n"
-                     " ---------------------------------------- \n\n"
+                     " ---------------------------------------- \n"
                      "KeselekJembut | 💖 Yuri4Life 💖 \n"
                      "Thunder best edgy gurl\n"
                      "Have a nice day~ \n")
