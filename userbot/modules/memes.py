@@ -1186,6 +1186,14 @@ async def nou(e):
                      "`\n┃┈▋┈▋┃\n┃┈╭▋━╮━╮\n┃┈┈╭╰╯╰╯╮`"
                      "`\n┫┈┈  NoU\n┃┈╰╰━━━━╯`"
 "`\n┗━━┻━┛`") 
+                      
+@register(outgoing=True, pattern="^.bruh$")
+async def bruh(e):
+    if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
+        await e.edit("`\n┈╭╮╭╮\n┈┃┃┃┃\n╭┻┗┻┗╮`"
+                     "`\n┃┈▋┈▋┃\n┃┈╭▋━╮━╮\n┃┈┈╭╰╯╰╯╮`"
+                     "`\n┫┈┈ Bruh\n┃┈╰╰━━━━╯`"
+"`\n┗━━┻━┛`") 
 
 
 CMD_HELP.update({
