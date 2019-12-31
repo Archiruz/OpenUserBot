@@ -30,7 +30,7 @@ KANGING_STR = [
     "Ay look over there (☉｡☉)!→\nWhile I kang this...",
     "Hippity hoppity this thing is now my property...",
     "Imprisoning this sticker...",
-    "Archiruz is stealing this sticker...",
+    "__Archiruz is stealing this sticker...__",
 ]
 
 
