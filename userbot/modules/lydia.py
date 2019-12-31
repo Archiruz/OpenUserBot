@@ -11,10 +11,6 @@ Userbot module to help you manage a group
 import coffeehouse
 import asyncio
 from userbot import LYDIA_API_KEY
-
-from userbot import BOTLOG, BOTLOG_CHATID, CMD_HELP, bot
-
-
 from userbot.events import register
 from telethon import events
 
@@ -91,7 +87,7 @@ async def user(event):
         return
 
     
-CMD_HELP.update({
+"""CMD_HELP.update({
     "lydia":
     ".addcf <username/reply>\
 \nUsage: add's lydia auto chat request in the chat.\
@@ -100,4 +96,4 @@ CMD_HELP.update({
 \n\n.repcf <username/reply>\
 \nUsage: starts lydia repling to perticular person in the chat."
 })
-
+"""

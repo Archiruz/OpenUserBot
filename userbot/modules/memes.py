@@ -1144,21 +1144,12 @@ async def kentu(e):
                      "\n(●_●)"
                      "\n(👉👌 Ngentot kuy?")
 
-                      
 @register(outgoing=True, pattern="^.jancok$")  
 async def jancok(e):
    if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
         await e.edit("\n{\__/}"
-                     "\n(●_●)"
-                     "\n(>💖Jancok💖")
-                      
- 
-@register(outgoing=True, pattern="^.horny$")  
-async def horny(e):
-   if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
-        await e.edit("\n{\__/}"
                      "\n(>_<)"
-                     "\n(>💖AKU HORNY JEMBUUUTT!1!1!💖")                      
+                     "\n(>💖Jancok💖")
 
 
 @register(outgoing=True, pattern="^.gey$")            
@@ -1194,14 +1185,6 @@ async def nou(e):
         await e.edit("`\n┈╭╮╭╮\n┈┃┃┃┃\n╭┻┗┻┗╮`"
                      "`\n┃┈▋┈▋┃\n┃┈╭▋━╮━╮\n┃┈┈╭╰╯╰╯╮`"
                      "`\n┫┈┈  NoU\n┃┈╰╰━━━━╯`"
-"`\n┗━━┻━┛`") 
-                      
-@register(outgoing=True, pattern="^.bruh$")
-async def bruh(e):
-    if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
-        await e.edit("`\n┈╭╮╭╮\n┈┃┃┃┃\n╭┻┗┻┗╮`"
-                     "`\n┃┈▋┈▋┃\n┃┈╭▋━╮━╮\n┃┈┈╭╰╯╰╯╮`"
-                     "`\n┫┈┈  Bruh\n┃┈╰╰━━━━╯`"
 "`\n┗━━┻━┛`") 
 
 
