@@ -13,6 +13,9 @@ Userbot module to use an AI To respond to people
 import coffeehouse
 import asyncio
 from userbot import LYDIA_API_KEY
+
+from userbot import BOTLOG, BOTLOG_CHATID, CMD_HELP, bot
+
 from userbot.events import register
 from telethon import events
 
