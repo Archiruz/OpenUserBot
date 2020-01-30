@@ -63,7 +63,7 @@ async def mention_afk(mention):
                 if USERS[mention.sender_id] % randint(2, 4) == 0:
                     if AFKREASON:
                         await mention.reply(f"I'm still AFK.\
-                            \nReason: `{AFKREASON}`")
+                            \nReason: `{AFKREASON}`\nPlease wait okeyy")
                     else:
                         await mention.reply(str(choice(AFKSTR)))
                     USERS[mention.sender_id] = USERS[mention.sender_id] + 1
@@ -93,7 +93,7 @@ async def afk_on_pm(sender):
             if sender.sender_id not in USERS:
                 if AFKREASON:
                     await sender.reply(f"I'm AFK right now.\
-                    \nReason: `{AFKREASON}`")
+                    \nReason: `{AFKREASON}`\nPlease wait okeyy, I'll reply ASAP")
                 else:
                     await sender.reply(str(choice(AFKSTR)))
                 USERS.update({sender.sender_id: 1})
@@ -140,7 +140,7 @@ async def type_afk_is_not_true(notafk):
     global AFKREASON
     if ISAFK:
         ISAFK = False
-        await notafk.respond("I'm no longer AFK.")
+        await notafk.respond("I'm no longer AFK.\nAuto generated message, stop complaining")
         await sleep(2)
         if BOTLOG:
             await notafk.client.send_message(
