@@ -155,8 +155,6 @@ async def type_afk_is_not_true(notafk):
     if ISAFK:
         ISAFK = False
         await notafk.respond("I'm no longer AFK.\nThis auto-generated message will be deleted immediately")
-        await sleep(2)
-        await notafk.delete()
         if BOTLOG:
             await notafk.client.send_message(
                 BOTLOG_CHATID,
@@ -174,6 +172,8 @@ async def type_afk_is_not_true(notafk):
         COUNT_MSG = 0
         USERS = {}
         AFKREASON = None
+        await sleep(2)
+        await notafk.delete()
 
 
 CMD_HELP.update({
