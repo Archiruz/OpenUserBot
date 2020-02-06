@@ -54,8 +54,8 @@ async def mention_afk(mention):
             if mention.sender_id not in USERS:
                 if AFKREASON:
                     await mention.reply(f"I'm AFK right now.\
-                        \nBecause I'm `{AFKREASON}`")
-                    await sleep(5)
+                        \nBecause I'm `{AFKREASON}`\nThis message will be deleted immediately")
+                    await sleep(4)
                     await mention.delete()
                 else:
                     await mention.reply(str(choice(AFKSTR)))
@@ -67,8 +67,8 @@ async def mention_afk(mention):
                 if USERS[mention.sender_id] % randint(2, 4) == 0:
                     if AFKREASON:
                         await mention.reply(f"I'm still AFK.\
-                            \nReason: `{AFKREASON}`\nPlease wait okeyy")
-                        await sleep(5)
+                            \nReason: `{AFKREASON}`\nPlease wait okeyy\nThis message will be deleted immediately")
+                        await sleep(4)
                         await mention.delete()
                     else:
                         await mention.reply(str(choice(AFKSTR)))
@@ -154,9 +154,9 @@ async def type_afk_is_not_true(notafk):
     global AFKREASON
     if ISAFK:
         ISAFK = False
-        await notafk.respond("I'm no longer AFK.\nAuto generated message")
+        await notafk.respond("I'm no longer AFK.\nThis auto-generated message will be deleted immediately")
         await sleep(2)
-        await notafk.delete
+        await notafk.delete()
         if BOTLOG:
             await notafk.client.send_message(
                 BOTLOG_CHATID,
