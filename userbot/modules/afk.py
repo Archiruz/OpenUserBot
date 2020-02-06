@@ -53,10 +53,10 @@ async def mention_afk(mention):
         if ISAFK:
             if mention.sender_id not in USERS:
                 if AFKREASON:
-                    await mention.reply(f"I'm AFK right now.\
+                    msg = await mention.reply(f"I'm AFK right now.\
                         \nBecause I'm `{AFKREASON}`\nThis message will be deleted immediately")
                     await sleep(4)
-                    await mention.delete()
+                    await msg.delete()
                 else:
                     await mention.reply(str(choice(AFKSTR)))
                     await sleep(5)
@@ -66,10 +66,10 @@ async def mention_afk(mention):
             elif mention.sender_id in USERS:
                 if USERS[mention.sender_id] % randint(2, 4) == 0:
                     if AFKREASON:
-                        await mention.reply(f"I'm still AFK.\
+                        msg = await mention.reply(f"I'm still AFK.\
                             \nReason: `{AFKREASON}`\nPlease wait okeyy\nThis message will be deleted immediately")
                         await sleep(4)
-                        await mention.delete()
+                        await msg.delete()
                     else:
                         await mention.reply(str(choice(AFKSTR)))
                     USERS[mention.sender_id] = USERS[mention.sender_id] + 1
@@ -98,10 +98,10 @@ async def afk_on_pm(sender):
         if apprv and ISAFK:
             if sender.sender_id not in USERS:
                 if AFKREASON:
-                    await sender.reply(f"I'm AFK right now.\
+                    msg = await sender.reply(f"I'm AFK right now.\
                     \nReason: `{AFKREASON}`\nPlease wait okeyy, I'll reply ASAP")
                     await sleep(5)
-                    await sender.delete()
+                    await msg.delete()
                 else:
                     await sender.reply(str(choice(AFKSTR)))
                 USERS.update({sender.sender_id: 1})
@@ -109,10 +109,10 @@ async def afk_on_pm(sender):
             elif apprv and sender.sender_id in USERS:
                 if USERS[sender.sender_id] % randint(2, 4) == 0:
                     if AFKREASON:
-                        await sender.reply(f"I'm still AFK.\
+                        msg = await sender.reply(f"I'm still AFK.\
                         \nReason: `{AFKREASON}`")
                         await sleep(5)
-                        await sender.delete()
+                        await msg.delete()
                     else:
                         await sender.reply(str(choice(AFKSTR)))
                     USERS[sender.sender_id] = USERS[sender.sender_id] + 1
@@ -174,8 +174,6 @@ async def type_afk_is_not_true(notafk):
         COUNT_MSG = 0
         USERS = {}
         AFKREASON = None
-        await sleep(2)
-        await notafk.delete()
 
 
 CMD_HELP.update({
