@@ -130,8 +130,8 @@ async def amireallyalive(alive):
                   f"User : {DEFAULTUSER}  \n"
                      " ---------------------------------------- \n"
                      "KeselekJembut | 💖 Yuri4Life 💖 \n"
-                     "[Girls Frontline Cosplay](https://t.me/gflcosplay) | [Arknights Cosplay](https://t.me/arknightscosplay)"
-                     "Arknights : Archiruz#4678 \nGirls Frontline : 709968 ")
+                     "[Girls Frontline Cosplay](https://t.me/gflcosplay) | [Arknights Cosplay](https://t.me/arknightscosplay)\n"
+                     "Girls Frontline : 709968 | Arknights : Archiruz#4678")
 
 
 @register(outgoing=True, pattern="^.aliveu")
