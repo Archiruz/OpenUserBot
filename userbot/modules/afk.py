@@ -55,8 +55,12 @@ async def mention_afk(mention):
                 if AFKREASON:
                     await mention.reply(f"I'm AFK right now.\
                         \nBecause I'm `{AFKREASON}`")
+                    await sleep(5)
+                    await mention.delete()
                 else:
                     await mention.reply(str(choice(AFKSTR)))
+                    await sleep(5)
+                    await mention.delete()
                 USERS.update({mention.sender_id: 1})
                 COUNT_MSG = COUNT_MSG + 1
             elif mention.sender_id in USERS:
@@ -64,6 +68,8 @@ async def mention_afk(mention):
                     if AFKREASON:
                         await mention.reply(f"I'm still AFK.\
                             \nReason: `{AFKREASON}`\nPlease wait okeyy")
+                        await sleep(5)
+                        await mention.delete()
                     else:
                         await mention.reply(str(choice(AFKSTR)))
                     USERS[mention.sender_id] = USERS[mention.sender_id] + 1
@@ -94,6 +100,8 @@ async def afk_on_pm(sender):
                 if AFKREASON:
                     await sender.reply(f"I'm AFK right now.\
                     \nReason: `{AFKREASON}`\nPlease wait okeyy, I'll reply ASAP")
+                    await sleep(5)
+                    await sender.delete()
                 else:
                     await sender.reply(str(choice(AFKSTR)))
                 USERS.update({sender.sender_id: 1})
@@ -103,6 +111,8 @@ async def afk_on_pm(sender):
                     if AFKREASON:
                         await sender.reply(f"I'm still AFK.\
                         \nReason: `{AFKREASON}`")
+                        await sleep(5)
+                        await sender.delete()
                     else:
                         await sender.reply(str(choice(AFKSTR)))
                     USERS[sender.sender_id] = USERS[sender.sender_id] + 1
@@ -122,9 +132,13 @@ async def set_afk(afk_e):
     if string:
         AFKREASON = string
         await afk_e.edit(f"Going AFK!\
-        \nReason: `{string}`")
+        \nReason: `{string}`\nAuto-destruct in 5 secs")
+        await sleep(5)
+        await afk_e.delete
     else:
         await afk_e.edit("Going AFK!")
+        await sleep(5)
+        await afk_e.delete
     if BOTLOG:
         await afk_e.client.send_message(BOTLOG_CHATID, "#AFK\nYou went AFK!")
     ISAFK = True
@@ -140,8 +154,9 @@ async def type_afk_is_not_true(notafk):
     global AFKREASON
     if ISAFK:
         ISAFK = False
-        await notafk.respond("I'm no longer AFK.\nAuto generated message, stop complaining")
+        await notafk.respond("I'm no longer AFK.\nAuto generated message")
         await sleep(2)
+        await notafk.delete
         if BOTLOG:
             await notafk.client.send_message(
                 BOTLOG_CHATID,
