@@ -134,11 +134,11 @@ async def set_afk(afk_e):
         await afk_e.edit(f"Going AFK!\
         \nReason: `{string}`\nAuto-destruct in 5 secs")
         await sleep(5)
-        await afk_e.delete
+        await afk_e.delete()
     else:
         await afk_e.edit("Going AFK!")
         await sleep(5)
-        await afk_e.delete
+        await afk_e.delete()
     if BOTLOG:
         await afk_e.client.send_message(BOTLOG_CHATID, "#AFK\nYou went AFK!")
     ISAFK = True
