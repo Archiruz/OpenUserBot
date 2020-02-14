@@ -7,6 +7,7 @@
 
 from random import choice, randint
 from asyncio import sleep
+from datetime import datetime
 
 from telethon.events import StopPropagation
 
@@ -49,7 +50,7 @@ async def mention_afk(mention):
 	global COUNT_MSG
 	global USERS
 	global ISAFK
-	global AFK_TIME
+	AFK_TIME = {}
 	if mention.message.mentioned and not (await mention.get_sender()).bot:
 		if AFK_TIME:
 			now = datetime.datetime.now()
