@@ -51,11 +51,41 @@ async def mention_afk(mention):
 	global ISAFK
 	global AFK_TIME
 	if mention.message.mentioned and not (await mention.get_sender()).bot:
+		if AFK_TIME:
+			now = datetime.datetime.now()
+			datime_since_afk = now - AFK_TIME
+			time = float(datime_since_afk.seconds)
+			days = time // (24 * 3600)
+			time = time % (24 * 3600)
+			hours = time // 3600
+			time %= 3600
+			minutes = time // 60
+			time %= 60
+			seconds = time
+			if days == 1:
+				afk_since = "**Yesterday**"
+			elif days > 1:
+				if days > 6:
+					date = now + \
+						datetime.timedelta(
+							days=-days, hours=-hours, minutes=-minutes)
+					afk_since = date.strftime("%A, %Y %B %m, %H:%I")
+				else:
+					wday = now + datetime.timedelta(days=-days)
+					afk_since = wday.strftime('%A')
+			elif hours > 1:
+				afk_since = f"`{int(hours)}h{int(minutes)}m` **ago**"
+			elif minutes > 0:
+				afk_since = f"`{int(minutes)}m{int(seconds)}s` **ago**"
+			else:
+				afk_since = f"`{int(seconds)}s` **ago**"
 		if ISAFK:
 			if mention.sender_id not in USERS:
 				if AFKREASON:
 					msg = await mention.reply(f"I'm AFK right now.\
-						\nBecause I'm `{AFKREASON}`\nThis message will be deleted immediately")
+						\nBecause I'm `{AFKREASON}`\
+						\nAFK since {afk_since}\
+						\nThis message will be deleted immediately")
 					await sleep(4)
 					await msg.delete()
 				else:
@@ -67,8 +97,9 @@ async def mention_afk(mention):
 			elif mention.sender_id in USERS:
 				if USERS[mention.sender_id] % randint(2, 4) == 0:
 					if AFKREASON:
-						 msg = await mention.reply(f"I'm AFK right now.\
-						\nBecause I'm `{AFKREASON}`, I will reply later\
+						msg = await mention.reply(f"I'm AFK right now.\
+						\nBecause I'm `{AFKREASON}`\
+						\nAFK since {afk_since}\
 						\nThis message will be deleted immediately")
 						await sleep(4)
 						await msg.delete()
