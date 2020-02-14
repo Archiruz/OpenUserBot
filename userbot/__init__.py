@@ -209,3 +209,4 @@ LASTMSG = {}
 CMD_HELP = {}
 ISAFK = False
 AFKREASON = None
+AFK_TIME = {}
