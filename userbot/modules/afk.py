@@ -50,8 +50,10 @@ async def mention_afk(mention):
 	global COUNT_MSG
 	global USERS
 	global ISAFK
-	AFK_TIME = {}
+	global AFK_TIME
+	global afk_since
 	if mention.message.mentioned and not (await mention.get_sender()).bot:
+		AFK_TIME = {}
 		if AFK_TIME:
 			now = datetime.datetime.now()
 			datime_since_afk = now - AFK_TIME
@@ -83,16 +85,12 @@ async def mention_afk(mention):
 		if ISAFK:
 			if mention.sender_id not in USERS:
 				if AFKREASON:
-					msg = await mention.reply(f"I'm AFK right now.\
+					await mention.reply(f"I'm AFK right now.\
 						\nBecause I'm `{AFKREASON}`\
 						\nAFK since {afk_since}\
 						\nThis message will be deleted immediately")
-					await sleep(4)
-					await msg.delete()
 				else:
 					await mention.reply(str(choice(AFKSTR)))
-					await sleep(5)
-					await mention.delete()
 				USERS.update({mention.sender_id: 1})
 				COUNT_MSG = COUNT_MSG + 1
 			elif mention.sender_id in USERS:
@@ -167,12 +165,8 @@ async def set_afk(afk_e):
 		AFKREASON = string
 		await afk_e.edit(f"Going AFK!\
 		\nReason: `{string}`\nAuto-destruct in 5 secs")
-		await sleep(5)
-		await afk_e.delete()
 	else:
 		await afk_e.edit("Going AFK!")
-		await sleep(5)
-		await afk_e.delete()
 	if BOTLOG:
 		await afk_e.client.send_message(BOTLOG_CHATID, "#AFK\nYou went AFK!")
 	ISAFK = True
