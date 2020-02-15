@@ -54,6 +54,7 @@ async def mention_afk(mention):
 	global afk_since
 	if mention.message.mentioned and not (await mention.get_sender()).bot:
 		AFK_TIME = {}
+		afk_since = 0
 		if AFK_TIME:
 			now = datetime.datetime.now()
 			datime_since_afk = now - AFK_TIME
@@ -87,7 +88,7 @@ async def mention_afk(mention):
 				if AFKREASON:
 					await mention.reply(f"I'm AFK right now.\
 						\nBecause I'm `{AFKREASON}`\
-						\nAFK since {afk_since}\
+						\nAFK since {AFK_TIME}\
 						\nThis message will be deleted immediately")
 				else:
 					await mention.reply(str(choice(AFKSTR)))
