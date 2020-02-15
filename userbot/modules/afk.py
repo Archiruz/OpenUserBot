@@ -165,7 +165,7 @@ async def set_afk(afk_e):
 	if string:
 		AFKREASON = string
 		await afk_e.edit(f"Going AFK!\
-		\nReason: `{string}`\nAuto-destruct in 5 secs")
+		\nReason: `{string}`")
 	else:
 		await afk_e.edit("Going AFK!")
 	if BOTLOG:
