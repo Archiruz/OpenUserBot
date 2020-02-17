@@ -88,7 +88,7 @@ async def mention_afk(mention):
 				if AFKREASON:
 					await mention.reply(f"I'm AFK right now.\
 						\nBecause I'm `{AFKREASON}`\
-						\nAFK since {AFK_TIME}\
+						\nAFK since {afk_since}\
 						\nThis message will be deleted immediately")
 				else:
 					await mention.reply(str(choice(AFKSTR)))
