@@ -5,14 +5,16 @@
 #
 """ Userbot module which contains afk-related commands """
 
+import time
+
 from random import choice, randint
 from asyncio import sleep
-from datetime import datetime
+import datetime
 
 from telethon.events import StopPropagation
 
 from userbot import (AFKREASON, COUNT_MSG, CMD_HELP, ISAFK, BOTLOG,
-					 BOTLOG_CHATID, USERS, PM_AUTO_BAN)
+					 BOTLOG_CHATID, USERS, PM_AUTO_BAN, AFK_TIME)
 from userbot.events import register
 
 # ========================= CONSTANTS ============================
@@ -51,14 +53,15 @@ async def mention_afk(mention):
 	global USERS
 	global ISAFK
 	global AFK_TIME
-	global afk_since
+	afk_since = "**a while ago**"
+	current_message_text = mention.message.message.lower()
+	if "afk" in current_message_text:
+		return False
 	if mention.message.mentioned and not (await mention.get_sender()).bot:
-		AFK_TIME = {}
-		afk_since = 0
 		if AFK_TIME:
-			now = datetime.datetime.now()
-			datime_since_afk = now - AFK_TIME
-			time = float(datime_since_afk.seconds)
+			now = datetime.datetime.now
+			time_since_afk = now - AFK_TIME
+			time = float(time_since_afk.seconds)
 			days = time // (24 * 3600)
 			time = time % (24 * 3600)
 			hours = time // 3600
@@ -67,16 +70,17 @@ async def mention_afk(mention):
 			time %= 60
 			seconds = time
 			if days == 1:
-				afk_since = "**Yesterday**"
+				afk_since == "**Yesterday**"
 			elif days > 1:
 				if days > 6:
 					date = now + \
 						datetime.timedelta(
-							days=-days, hours=-hours, minutes=-minutes)
-					afk_since = date.strftime("%A, %Y %B %m, %H:%I")
+							days=-days, hours=-hours, minutes=-minutes
+						)
+					afk_since = date.strftime("%A, %Y, %B, %H:%I")
 				else:
 					wday = now + datetime.timedelta(days=-days)
-					afk_since = wday.strftime('%A')
+					afk_since = wday.strftime("%A")
 			elif hours > 1:
 				afk_since = f"`{int(hours)}h{int(minutes)}m` **ago**"
 			elif minutes > 0:
@@ -88,8 +92,7 @@ async def mention_afk(mention):
 				if AFKREASON:
 					await mention.reply(f"I'm AFK right now.\
 						\nBecause I'm `{AFKREASON}`\
-						\nAFK since {afk_since}\
-						\nThis message will be deleted immediately")
+						\n`since` {afk_since}")
 				else:
 					await mention.reply(str(choice(AFKSTR)))
 				USERS.update({mention.sender_id: 1})
@@ -97,12 +100,9 @@ async def mention_afk(mention):
 			elif mention.sender_id in USERS:
 				if USERS[mention.sender_id] % randint(2, 4) == 0:
 					if AFKREASON:
-						msg = await mention.reply(f"I'm AFK right now.\
+						await mention.reply(f"I'm AFK right now.\
 						\nBecause I'm `{AFKREASON}`\
-						\nAFK since {afk_since}\
-						\nThis message will be deleted immediately")
-						await sleep(4)
-						await msg.delete()
+						\n`since` {afk_since}")
 					else:
 						await mention.reply(str(choice(AFKSTR)))
 					USERS[mention.sender_id] = USERS[mention.sender_id] + 1
