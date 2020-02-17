@@ -9,7 +9,7 @@ import time
 
 from random import choice, randint
 from asyncio import sleep
-import datetime
+from datetime import datetime
 
 from telethon.events import StopPropagation
 
@@ -91,7 +91,7 @@ async def mention_afk(mention):
 			if mention.sender_id not in USERS:
 				if AFKREASON:
 					await mention.reply(f"I'm AFK right now.\
-						\nBecause I'm `{AFKREASON}`\
+						\nReason: `{AFKREASON}`\
 						\n`since` {afk_since}")
 				else:
 					await mention.reply(str(choice(AFKSTR)))
@@ -101,7 +101,7 @@ async def mention_afk(mention):
 				if USERS[mention.sender_id] % randint(2, 4) == 0:
 					if AFKREASON:
 						await mention.reply(f"I'm AFK right now.\
-						\nBecause I'm `{AFKREASON}`\
+						\nReason: `{AFKREASON}`\
 						\n`since` {afk_since}")
 					else:
 						await mention.reply(str(choice(AFKSTR)))
