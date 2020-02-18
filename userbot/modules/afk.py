@@ -52,47 +52,17 @@ async def mention_afk(mention):
 	global COUNT_MSG
 	global USERS
 	global ISAFK
-	global AFK_TIME
-	afk_since = "**a while ago**"
 	current_message_text = mention.message.message.lower()
 	if "afk" in current_message_text:
 		return False
 	if mention.message.mentioned and not (await mention.get_sender()).bot:
-		if AFK_TIME:
-			now = datetime.datetime.now
-			time_since_afk = now - AFK_TIME
-			time = float(time_since_afk.seconds)
-			days = time // (24 * 3600)
-			time = time % (24 * 3600)
-			hours = time // 3600
-			time %= 3600
-			minutes = time // 60
-			time %= 60
-			seconds = time
-			if days == 1:
-				afk_since == "**Yesterday**"
-			elif days > 1:
-				if days > 6:
-					date = now + \
-						datetime.timedelta(
-							days=-days, hours=-hours, minutes=-minutes
-						)
-					afk_since = date.strftime("%A, %Y, %B, %H:%I")
-				else:
-					wday = now + datetime.timedelta(days=-days)
-					afk_since = wday.strftime("%A")
-			elif hours > 1:
-				afk_since = f"`{int(hours)}h{int(minutes)}m` **ago**"
-			elif minutes > 0:
-				afk_since = f"`{int(minutes)}m{int(seconds)}s` **ago**"
-			else:
-				afk_since = f"`{int(seconds)}s` **ago**"
 		if ISAFK:
 			if mention.sender_id not in USERS:
 				if AFKREASON:
-					await mention.reply(f"I'm AFK right now.\
-						\nReason: `{AFKREASON}`\
-						\n`since` {afk_since}")
+					msg = await mention.reply(f"I'm AFK right now.\
+						\nReason: `{AFKREASON}`")
+					await sleep(7)
+					await msg.delete()
 				else:
 					await mention.reply(str(choice(AFKSTR)))
 				USERS.update({mention.sender_id: 1})
@@ -100,9 +70,10 @@ async def mention_afk(mention):
 			elif mention.sender_id in USERS:
 				if USERS[mention.sender_id] % randint(2, 4) == 0:
 					if AFKREASON:
-						await mention.reply(f"I'm AFK right now.\
-						\nReason: `{AFKREASON}`\
-						\n`since` {afk_since}")
+						msg = await mention.reply(f"I'm AFK right now.\
+						\nReason: `{AFKREASON}`")
+					await sleep(7)
+					await msg.delete()
 					else:
 						await mention.reply(str(choice(AFKSTR)))
 					USERS[mention.sender_id] = USERS[mention.sender_id] + 1
@@ -133,7 +104,7 @@ async def afk_on_pm(sender):
 				if AFKREASON:
 					msg = await sender.reply(f"I'm AFK right now.\
 					\nReason: `{AFKREASON}`\nPlease wait okeyy, I'll reply ASAP")
-					await sleep(5)
+					await sleep(10)
 					await msg.delete()
 				else:
 					await sender.reply(str(choice(AFKSTR)))
@@ -144,7 +115,7 @@ async def afk_on_pm(sender):
 					if AFKREASON:
 						msg = await sender.reply(f"I'm still AFK.\
 						\nReason: `{AFKREASON}`")
-						await sleep(5)
+						await sleep(10)
 						await msg.delete()
 					else:
 						await sender.reply(str(choice(AFKSTR)))
