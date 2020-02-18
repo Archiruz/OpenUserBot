@@ -72,8 +72,8 @@ async def mention_afk(mention):
 					if AFKREASON:
 						msg = await mention.reply(f"I'm AFK right now.\
 						\nReason: `{AFKREASON}`")
-					await sleep(7)
-					await msg.delete()
+						await sleep(7)
+						await msg.delete()
 					else:
 						await mention.reply(str(choice(AFKSTR)))
 					USERS[mention.sender_id] = USERS[mention.sender_id] + 1
