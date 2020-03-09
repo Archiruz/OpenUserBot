@@ -16,23 +16,24 @@ async def hentai(event):
        input_str = event.pattern_match.group(1)
        return
     if not input_str:
-        await event.edit("I need a valid link.")
-        return
+       await event.edit("I need a valid link.")
+       return
     chat = "@nHentaiBot"
     await event.edit("`Processing`")
     
-    async with bot.conversation(chat) as conv:
-        try:
-           response = conv.wait_event(events.NewMessage(incoming=True,from_users=424466890))
-           await bot.forward_messages(chat, input_str)
-           response = await response
-        except YouBlockedUserError:
-           await event.reply("`Please unblock @nHentaiBot and try again`")
-           return
-        if response.text.startswith("Sorry"):
-           await event.edit("`I think this is not a valid link`")
-        else:
-           await bot.forward_messages(event.chat_id, response.message)	
+    async with bot.conversation("@nHentaiBot") as conv:
+       try:     
+            response = conv.wait_event(events.NewMessage(incoming=True,from_users=424466890))
+            await bot.forward_messages(chat, input_str)
+            response = await response 
+       except YouBlockedUserError: 
+            await event.reply("```Please unblock @nHentaiBot and try again```")
+            return
+       if response.text.startswith("Sorry"):
+            await event.edit("I think this is not a valid link.")
+       else: 
+            await event.delete()   
+            await bot.forward_messages(event.chat_id, response.message)
 
 CMD_HELP.update({
         "nhentai": 
