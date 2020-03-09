@@ -14,8 +14,7 @@ from userbot.events import register
 async def hentai(event):
     if event.fwd_from:
        return
-    input_str = str()
-    if not input_str:
+    if not event.url:
        await event.edit("I need a valid link.")
        return
     chat = "@nHentaiBot"
