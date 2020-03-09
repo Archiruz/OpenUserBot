@@ -12,16 +12,16 @@ from userbot.events import register
 
 @register(outgoing=True, pattern="^.nhentai(?: |$)(.*)")
 async def hentai(event):
-    input_str = event.pattern_match.group(1)
     if event.fwd_from:
        return
+    input_str = event.pattern_match.group(1)
     if not input_str:
        await event.edit("I need a valid link.")
        return
     chat = "@nHentaiBot"
     await event.edit("`Processing`")
     
-    async with bot.conversation("@nHentaiBot") as conv:
+    async with bot.conversation(chat) as conv:
        try:     
             response = conv.wait_event(events.NewMessage(incoming=True,from_users=424466890))
             await bot.forward_messages(chat, input_str)
