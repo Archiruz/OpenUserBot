@@ -13,8 +13,8 @@ from userbot.events import register
 @register(outgoing=True, pattern="^.nhentai(?: |$)(.*)")
 async def hentai(event):
     if event.fwd_from:
-        return
-    input_str = event.pattern_match.group(1)
+       input_str = event.pattern_match.group(1)
+       return
     if not input_str:
         await event.edit("I need a valid link.")
         return
