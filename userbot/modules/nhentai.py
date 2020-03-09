@@ -14,7 +14,7 @@ from userbot.events import register
 async def hentai(event):
     if event.fwd_from:
        return
-    input_str = event.pattern_match.group(1)
+    input_str = str()
     if not input_str:
        await event.edit("I need a valid link.")
        return
@@ -24,6 +24,7 @@ async def hentai(event):
     async with bot.conversation(chat) as conv:
        try:     
             response = conv.wait_event(events.NewMessage(incoming=True,from_users=424466890))
+            input_str = event.pattern_match.group(1)
             await bot.forward_messages(chat, input_str)
             response = await response 
        except YouBlockedUserError: 
